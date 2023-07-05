@@ -12,12 +12,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 
 data = []
+file = 'darveys.json'
 
 def get_selenium():                           
     opts = Options()
     opts.add_argument('--ignore-certificate-errors')
     opts.add_argument('--incognito')
-    # opts.add_argument('headless')        
+    opts.add_argument('headless')        
     opts.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")            
     s=Service('chromedriver.exe')
     browser = webdriver.Chrome(service=s, options=opts)
@@ -105,7 +106,7 @@ def getdarveysdata(product, cate):
     print(record)
 
 def exportjson(data):
-    with open('womenleft.json', 'w') as f:
+    with open(file, 'w') as f:
         json.dump(data, f, indent=4)
         print('Data extracted')
         
