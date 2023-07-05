@@ -1,0 +1,4 @@
+data_crawl/web_crawl/boozt/*.json
+venv/
+.venv
+venv/Lib/site-packages/*
