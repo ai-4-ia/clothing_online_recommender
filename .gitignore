@@ -1,4 +1,5 @@
-data_crawl/web_crawl/boozt/*.json
 venv/
 .venv
 venv/Lib/site-packages/*
+data_crawl/web_crawl/boozt/*.json
+data_crawl/web_crawl/darveys/*.json
