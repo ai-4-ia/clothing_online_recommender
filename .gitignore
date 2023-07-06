@@ -7,4 +7,8 @@ data_crawl/web_crawl/farfetch/*.json
 data_crawl/web_crawl/styleanda/*.json
 data_crawl/web_crawl/styleanda/*.csv
 data_crawl/web_crawl/yoox/*.json
-
+dataset_build/DeepFashion2/train/*
+dataset_build/DeepFashion2/validation/*
+dataset_build/DeepFashion2/yolo_train/*
+dataset_build/DeepFashion2/yolo_valid/*
+dataset_build/DeepFashion2/*.rar
