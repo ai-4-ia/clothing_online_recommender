@@ -6,3 +6,5 @@ data_crawl/web_crawl/darveys/*.json
 data_crawl/web_crawl/farfetch/*.json
 data_crawl/web_crawl/styleanda/*.json
 data_crawl/web_crawl/styleanda/*.csv
+data_crawl/web_crawl/yoox/*.json
+
