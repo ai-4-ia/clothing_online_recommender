@@ -17,3 +17,10 @@ dataset_build/Fashionpedia/validation/*
 dataset_build/Fashionpedia/test.py
 dataset_build/Fashionpedia/test1.py
 model/cnn/static/*h5
+app/database/full_database/dress/*.jpg
+app/database/full_database/outwear/*.jpg
+app/database/full_database/shirt/*.jpg
+app/database/full_database/short/*.jpg
+app/database/full_database/skirt/*.jpg
+app/database/full_database/trouser/*.jpg
+
