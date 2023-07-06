@@ -15,7 +15,7 @@ The Fashion Recommendation System has been put into application and developed at
 
 In this project, we propose a model that uses Mobilenetv3 Model, k-nearest neighbors algorithm, Yolov5, BeautifulSoup and Selenium. Initial, the Mobinetv3 model are trained with our dataset and then  another dataset containing the information and images which is crawled from some online selling website is created. When the user input searching image, that image goes through the yolov5 model to extract the clothing pieces and determine which category it belongs to. Finally, k-nearest neighbor's algorithm is used to find the most relevant products based on the input extracting image and recommendations are generated.
 
-![Alt text](https://github.com/congdng/Fashion-Recommendation-System/blob/main/demo/Diagram.png)
+![Alt text](https://imgur.com/a/BQ8LJQl)
 
 ## Dataset
 
@@ -25,7 +25,7 @@ https://github.com/switchablenorms/DeepFashion2
 
 ## Train the neural networks
 
-Once the data is pre-processed, the neural networks are trained, utilizing transfer learning from Mobilenetv3. Additional layers are added in the last layers that replace the initial model to fine-tune the network model to serve the current issue.
+Once the data is pre-processed, the neural networks are trained, utilizing transfer learning from Resnet50. Additional layers are added in the last layers that replace the initial model to fine-tune the network model to serve the current issue.
 
 ![](https://i.imgur.com/NJ0JbBy.png)
 
@@ -33,31 +33,7 @@ Once the data is pre-processed, the neural networks are trained, utilizing trans
 
 I use BeautifulSoup and Selenium to crawl data from e-commerce sites that sell clothing related items. The information that is crawled includes the name, the url to the product, the image link, and the price.
 Currently, there are two main sites being used to crawl data.
-1. Amazon
-
-Website link: amazon.com
-
-This is a commercial website in the top of e-commerce brands.
-Advantages:
-- Large number of products.
-- Popular all over the world.
-Weakness:
-- The images are often noisy, i.e. do not completely include the product image.
-- The amount of data displayed and crawled is only 8 pages, about 500 products.
-- Products are sometimes duplicated.
-
-2. Darveys
-
-Website link: amazon.com
-
-This is a commercial website with main products are clothes for men, women and children.
-Advantages:
-- The number of products is quite large.
-- Product images are cropped closely and with little noise components.
-Weakness:
-- Sometimes the image link is dead.
-- The displayed currency is rupees.
-- Search engine is not thorough.
+![](https://imgur.com/ZLBnr18)
 
 ## k-Nearest Neighbors algorithm
 
@@ -72,9 +48,8 @@ YOLOV5 is trained on Pytorch instead of DarkNet like previous generations. This 
 
 ## Results
 
-Mobilenetv3 after being trained on DeepLearning 2 dataset achieved an accuracy of 74.2%. For YOLOV5 model, the accuracy achieved 76.4%. However, the recognition rate of the "dress" category is still low. One possible cause is because the images in the dataset used for training are not good and a large number of images contain "dress" accompanying the wearer's legs. Thus, when identifying, the model often relies on this feature to identify dress. Below is the confusion matrix of the YOLOV5 model.
+Proposed model after being trained on DeepLearning 2 dataset achieved an accuracy of 74.2%. For YOLOV5 model, the accuracy achieved 83.81%. However, the recognition rate of the "dress" category is still low. One possible cause is because the images in the dataset used for training are not good and a large number of images contain "dress" accompanying the wearer's legs. Thus, when identifying, the model often relies on this feature to identify dress. Below is the confusion matrix of the YOLOV5 model.
 
-![](https://github.com/congdng/Fashion-Recommendation-System/blob/main/yolov5/runs/train/Model11/confusion_matrix.png)
 
 ## Screenshots
 
