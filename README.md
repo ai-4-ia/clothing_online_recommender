@@ -15,7 +15,7 @@ The Fashion Recommendation System has been put into application and developed at
 
 In this project, we propose a model that uses Mobilenetv3 Model, k-nearest neighbors algorithm, Yolov5, BeautifulSoup and Selenium. Initial, the Mobinetv3 model are trained with our dataset and then  another dataset containing the information and images which is crawled from some online selling website is created. When the user input searching image, that image goes through the yolov5 model to extract the clothing pieces and determine which category it belongs to. Finally, k-nearest neighbor's algorithm is used to find the most relevant products based on the input extracting image and recommendations are generated.
 
-![Alt text](https://imgur.com/a/BQ8LJQl)
+![Alt text](https://i.imgur.com/wcpQlg7.jpeg)
 
 ## Dataset
 
@@ -33,7 +33,7 @@ Once the data is pre-processed, the neural networks are trained, utilizing trans
 
 I use BeautifulSoup and Selenium to crawl data from e-commerce sites that sell clothing related items. The information that is crawled includes the name, the url to the product, the image link, and the price.
 Currently, there are two main sites being used to crawl data.
-![](https://imgur.com/ZLBnr18)
+![](https://i.imgur.com/ZLBnr18.jpeg)
 
 ## k-Nearest Neighbors algorithm
 
