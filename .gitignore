@@ -12,3 +12,7 @@ dataset_build/DeepFashion2/validation/*
 dataset_build/DeepFashion2/yolo_train/*
 dataset_build/DeepFashion2/yolo_valid/*
 dataset_build/DeepFashion2/*.rar
+dataset_build/Fashionpedia/train/*
+dataset_build/Fashionpedia/validation/*
+dataset_build/Fashionpedia/test.py
+dataset_build/Fashionpedia/test1.py
