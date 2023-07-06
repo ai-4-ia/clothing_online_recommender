@@ -16,3 +16,6 @@ dataset_build/Fashionpedia/train/*
 dataset_build/Fashionpedia/validation/*
 dataset_build/Fashionpedia/test.py
 dataset_build/Fashionpedia/test1.py
+model/cnn/lrfinder/lrfinder/*.egg-info
+model/cnn/lrfinder/lrfinder/__pycache__
+model/cnn/lrfinder/lrfinder/.ipynb_checkpoints
