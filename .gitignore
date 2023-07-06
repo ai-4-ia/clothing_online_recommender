@@ -16,3 +16,4 @@ dataset_build/Fashionpedia/train/*
 dataset_build/Fashionpedia/validation/*
 dataset_build/Fashionpedia/test.py
 dataset_build/Fashionpedia/test1.py
+model/cnn/static/*h5
