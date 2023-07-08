@@ -23,4 +23,13 @@ app/database/full_database/shirt/*.jpg
 app/database/full_database/short/*.jpg
 app/database/full_database/skirt/*.jpg
 app/database/full_database/trouser/*.jpg
+app/database/full_database/dress/*.json
+app/database/full_database/outwear/*.json
+app/database/full_database/shirt/*.json
+app/database/full_database/short/*.json
+app/database/full_database/skirt/*.json
+app/database/full_database/trouser/*.json
+test.py
+model/cnn/static/*.json
+model/knn/data/*.pkl
 
