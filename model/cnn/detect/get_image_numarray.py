@@ -65,6 +65,8 @@ print(secondmodel.summary())
 secondmodel.compile(loss = 'categorical_crossentropy', optimizer = opt , metrics=[tf.keras.metrics.CategoricalAccuracy()])
 with open(JSONFILE, 'r') as f:
     temp = json.loads(f.read())
+    # for i in range(40000):
+    # for i in range(66106, 66109):
     for i in range(len(temp)):
         try:
             category = str(temp[i]['category'])
@@ -74,7 +76,6 @@ with open(JSONFILE, 'r') as f:
             price_sale= str(temp[i]['price_sale'])
             imagelink = str(temp[i]['imageLink'])
             img = DATA_PATH + category + '/' + str(i).zfill(6) + '.jpg'
-            print(imagelink)
             notedarray = get_embedding(secondmodel, img).tolist()
             dataset['info'].append({
                     'no': i,
@@ -85,11 +86,13 @@ with open(JSONFILE, 'r') as f:
                     'notedarray': notedarray
                     })
             print(i)
+            print(imagelink)
+            print(img)
         except Exception as e:
             print(e)
             fail.append(i)
 
-print(dataset)
+# print(dataset)
 with open(EMBEDDINGS, 'w') as f:
     json.dump(dataset, f)
 with open(FAILEMBEDDINGS, 'w') as f:
