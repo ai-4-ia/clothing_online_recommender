@@ -32,4 +32,5 @@ app/database/full_database/trouser/*.json
 test.py
 model/cnn/static/*.json
 model/knn/data/*.pkl
+model/yolo/*.pt
 
