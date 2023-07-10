@@ -5,12 +5,12 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node back-end/server",
-    "server": "nodemon back-end/server --ignore client",
-    "client": "npm start --prefix front-end/project/app",
+    "start": "node backend/server",
+    "server": "nodemon backend/server --ignore client",
+    "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node back-end/seeder",
-    "data:destroy": "node back-end/seeder -d"
+    "data:import": "node backend/seed/seeder",
+    "data:destroy": "node backend/seed/seeder -d"
   },
   "author": "",
   "license": "ISC",
