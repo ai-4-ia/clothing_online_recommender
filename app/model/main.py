@@ -192,7 +192,7 @@ def detect_process(yolomodel, cnnmodel):
                 print(indices)
                 print(distance)
                 thislist = sorted(filter(lambda x: os.path.isfile(os.path.join(f'{DATABASEPATH}{choose_category}/', x)), os.listdir(f'{DATABASEPATH}{choose_category}/')))
-                show_result_1(f'{DATABASEPATH}{choose_category}/', thislist, indices, distance)
+                # show_result_1(f'{DATABASEPATH}{choose_category}/', thislist, indices, distance)
                 show_result_2(f'{DATABASEPATH}{choose_category}/', thislist, indices, distance)
                 
 def show_result_1(path, thislist, indices, distance):
@@ -206,7 +206,9 @@ def show_result_1(path, thislist, indices, distance):
         print('1')
         print(PATH)
         st.write(record['Name'])
+        st.write('Original Price')
         st.write(record['Original_Price'])
+        st.write('Sale Price')
         st.write(record['Sale_Price'])
         link = record['_id']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
@@ -219,7 +221,9 @@ def show_result_1(path, thislist, indices, distance):
         print('2')
         print(PATH)
         st.write(record['Name'])
+        st.write('Original Price')
         st.write(record['Original_Price'])
+        st.write('Sale Price')
         st.write(record['Sale_Price'])
         link = record['_id']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
@@ -231,7 +235,9 @@ def show_result_1(path, thislist, indices, distance):
         print('3')
         print(PATH)
         st.write(record['Name'])
+        st.write('Original Price')
         st.write(record['Original_Price'])
+        st.write('Sale Price')
         st.write(record['Sale_Price'])
         link = record['_id']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
@@ -243,7 +249,9 @@ def show_result_1(path, thislist, indices, distance):
         print('4')
         print(PATH)
         st.write(record['Name'])
+        st.write('Original Price')
         st.write(record['Original_Price'])
+        st.write('Sale Price')
         st.write(record['Sale_Price'])
         link = record['_id']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
@@ -264,13 +272,14 @@ def show_result_2(path, thislist, indices, distance):
         image_num_array.append(image_num)
     data_array = get_data_array(image_num_array, DATABASEINFORMATIONPATH)
     print(image_num_array)
-    print(data_array)
     col1, col2, col3, col4 = st.columns(4) 
     with col1:
         st.image(data_array[0]['imageLink'])
         print('1')
         st.write(data_array[0]['name'])
+        st.write('Original Price')
         st.write(data_array[0]['price_org'])
+        st.write('Sale Price')
         st.write(data_array[0]['price_sale'])
         link = data_array[0]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
@@ -280,8 +289,10 @@ def show_result_2(path, thislist, indices, distance):
         st.image(data_array[1]['imageLink'])
         print('2')
         st.write(data_array[1]['name'])
-        st.write(data_array[1]['price_org'])
-        st.write(data_array[1]['price_sale'])
+        st.write('Original Price')
+        st.write(data_array[0]['price_org'])
+        st.write('Sale Price')
+        st.write(data_array[0]['price_sale'])
         link = data_array[1]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
         print(link)
@@ -290,8 +301,10 @@ def show_result_2(path, thislist, indices, distance):
         st.image(data_array[2]['imageLink'])
         print('3')
         st.write(data_array[2]['name'])
-        st.write(data_array[2]['price_org'])
-        st.write(data_array[2]['price_sale'])
+        st.write('Original Price')
+        st.write(data_array[0]['price_org'])
+        st.write('Sale Price')
+        st.write(data_array[0]['price_sale'])
         link = data_array[2]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
         print(link)
@@ -300,8 +313,10 @@ def show_result_2(path, thislist, indices, distance):
         st.image(data_array[3]['imageLink'])
         print('4')
         st.write(data_array[3]['name'])
-        st.write(data_array[3]['price_org'])
-        st.write(data_array[3]['price_sale'])
+        st.write('Original Price')
+        st.write(data_array[0]['price_org'])
+        st.write('Sale Price')
+        st.write(data_array[0]['price_sale'])
         link = data_array[3]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
         print(link)

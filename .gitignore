@@ -33,4 +33,5 @@ test.py
 model/cnn/static/*.json
 model/knn/data/*.pkl
 model/yolo/*.pt
+app/.env
 
