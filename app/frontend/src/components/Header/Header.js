@@ -43,7 +43,7 @@ const Header = () => {
                         </LinkContainer>
                         <a
                             // href="https://localhost:8501/"
-                            href="http://10.238.18.89:8501"
+                            href="/detect"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="header_search"

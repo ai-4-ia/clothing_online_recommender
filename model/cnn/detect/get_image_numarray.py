@@ -16,11 +16,14 @@ import configparser
 import os
 
 CONFIG = '../static/model_download_link.cfg'
-output = '../static/cnn_model.h5'
-JSONFILE = '../../../dataset_build/Crawl_Data/summary.json'
-DATA_PATH = '../../../app/database/full_database/'
-EMBEDDINGS = '../static/embeddings.json'
-FAILEMBEDDINGS = '../static/failembeddings.json'
+# output = '../static/cnn_model.h5'
+output = '../static/BestModel777.h5'
+# JSONFILE = '../../../dataset_build/Crawl_Data/summary.json'
+JSONFILE = '../../../knnsummary.json'
+# DATA_PATH = '../../../app/database/cropped_database/'
+DATA_PATH = '../../../subset/'
+EMBEDDINGS = '../static/embeddings_11.json'
+FAILEMBEDDINGS = '../static/failembeddings_11.json'
 lr = 0.001
 wd = lr * 1e-2
 IMAGE_WIDTH = 224
@@ -65,9 +68,9 @@ print(secondmodel.summary())
 secondmodel.compile(loss = 'categorical_crossentropy', optimizer = opt , metrics=[tf.keras.metrics.CategoricalAccuracy()])
 with open(JSONFILE, 'r') as f:
     temp = json.loads(f.read())
-    # for i in range(40000):
-    # for i in range(66106, 66109):
+    # for i in range(22684, 22686):
     for i in range(len(temp)):
+    # for i in range(12000):
         try:
             category = str(temp[i]['category'])
             name = str(temp[i]['name'])
@@ -75,10 +78,12 @@ with open(JSONFILE, 'r') as f:
             price_org= str(temp[i]['price_org'])
             price_sale= str(temp[i]['price_sale'])
             imagelink = str(temp[i]['imageLink'])
-            img = DATA_PATH + category + '/' + str(i).zfill(6) + '.jpg'
+            no = str(temp[i]['no'])
+            img = DATA_PATH + category + '/' + str(no).zfill(6) + '_0.jpg'
             notedarray = get_embedding(secondmodel, img).tolist()
             dataset['info'].append({
                     'no': i,
+                    'array_no': no,
                     'category': category,
                     'name': name,
                     'url': url,

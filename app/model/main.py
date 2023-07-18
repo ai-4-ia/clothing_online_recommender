@@ -22,17 +22,17 @@ from keras.applications.resnet import ResNet50, preprocess_input
 from PIL import Image
 import datetime
 
-CNN_CONFIG = '../../model/cnn/static/model_download_link.cfg'
-cnn_output = '../../model/cnn/static/cnn_model.h5'
-YOLO_CONFIG = '../../model/yolo/model_download_link.cfg'
-yolo_output = '../../model/yolo/yolo.pt'
-KNN_CONFIG = '../../model/knn/model_download_link.cfg'
-knn_output = '../../model/knn/data/'
-JSONFILE = '../dataset_build/Crawl_Data/summary.json'
-SAVEDPATH = '../static/upload/'
-CUTPATH = '../static/detect/'
-DATABASEPATH = '../database/full_database/'
-DATABASEINFORMATIONPATH = '../database/final_database.json/'
+CNN_CONFIG = '../model/cnn/static/model_download_link.cfg'
+cnn_output = '../model/cnn/static/cnn_model.h5'
+YOLO_CONFIG = '../model/yolo/model_download_link.cfg'
+yolo_output = '../model/yolo/yolo.pt'
+KNN_CONFIG = '../model/knn/model_download_link.cfg'
+knn_output = '../model/knn/data/'
+JSONFILE = './dataset_build/Crawl_Data/summary.json'
+SAVEDPATH = './static/upload/'
+CUTPATH = './static/detect/'
+DATABASEPATH = './database/cropped_database/'
+DATABASEINFORMATIONPATH = './database/final_database.json/'
 IMAGE_WIDTH = 224
 IMAGE_HEIGHT = 224
 IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
@@ -58,7 +58,7 @@ def model_setup(CNN_CONFIG, cnn_output, YOLO_CONFIG, yolo_output):
         model_download(yolo_link, yolo_output)
 
 def knn_download(KNN_CONFIG, knn_output, category):
-    knn_link = read_config(KNN_CONFIG, 'model', category)
+    knn_link = read_config(KNN_CONFIG, 'kNN', category)
     path = f'{knn_output}{category}_knn.pkl'
     isExist = os.path.exists(path)
     if (isExist == False):
@@ -139,7 +139,7 @@ def detect_process(yolomodel, cnnmodel):
             area = width * height
             st.image(uploaded_file)
             filename = uploaded_file.name[0:-4]
-            detections = yolomodel.predict(uploadimage, imgsz=640, conf=0.39, iou=0.5)
+            detections = yolomodel.predict(uploadimage, imgsz=640, conf=0.39, iou=0.5, agnostic_nms = True)
             for detection in detections:                                       
                 boxes = detection.boxes.numpy()                               
                 for box in boxes:                                          
@@ -150,7 +150,7 @@ def detect_process(yolomodel, cnnmodel):
                     #         'category': category_detected,
                     #         'bbox': r
                     # })
-                    if (bbox_area / area > 0.05):
+                    if (bbox_area / area > 0.1):
                         bbox_array.append({
                             'category': category_detected,
                             'bbox': r
@@ -212,7 +212,6 @@ def show_result_1(path, thislist, indices, distance):
         st.write(record['Sale_Price'])
         link = record['_id']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
-        print(link)
         st.markdown(link, unsafe_allow_html=True)
     with col2:
         st.image(path + thislist[indices[0][1]*2])
@@ -261,18 +260,21 @@ def get_data_array(image_num_array, DATABASEINFORMATIONPATH):
     data_array = []
     with open(DATABASEINFORMATIONPATH, 'r') as f:
         temp = json.loads(f.read())
-    for item in image_num_array:
-        data_array.append(temp[item])
+    for data in image_num_array:
+        for item in temp:
+            if item['no'] == data:
+                data_array.append(item)
     return data_array    
     
 def show_result_2(path, thislist, indices, distance):
     image_num_array = []
     for j in range(4):
-        image_num = int((thislist[indices[0][j]*2])[:-4])
+        image_num = int((thislist[indices[0][j]*2])[:-6])
         image_num_array.append(image_num)
+        print(image_num)
     data_array = get_data_array(image_num_array, DATABASEINFORMATIONPATH)
     print(image_num_array)
-    col1, col2, col3, col4 = st.columns(4) 
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.image(data_array[0]['imageLink'])
         print('1')
@@ -283,7 +285,6 @@ def show_result_2(path, thislist, indices, distance):
         st.write(data_array[0]['price_sale'])
         link = data_array[0]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
-        print(link)
         st.markdown(link, unsafe_allow_html=True)
     with col2:
         st.image(data_array[1]['imageLink'])
@@ -295,7 +296,6 @@ def show_result_2(path, thislist, indices, distance):
         st.write(data_array[0]['price_sale'])
         link = data_array[1]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
-        print(link)
         st.markdown(link, unsafe_allow_html=True)
     with col3:
         st.image(data_array[2]['imageLink'])
@@ -307,7 +307,6 @@ def show_result_2(path, thislist, indices, distance):
         st.write(data_array[0]['price_sale'])
         link = data_array[2]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
-        print(link)
         st.markdown(link, unsafe_allow_html=True)
     with col4:
         st.image(data_array[3]['imageLink'])
@@ -319,8 +318,7 @@ def show_result_2(path, thislist, indices, distance):
         st.write(data_array[0]['price_sale'])
         link = data_array[3]['_id']['$oid']
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
-        print(link)
-        st.markdown(link, unsafe_allow_html=True)                  
+        st.markdown(link, unsafe_allow_html=True)   
                 
 def main():
     #Model Setup

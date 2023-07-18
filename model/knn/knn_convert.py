@@ -17,9 +17,11 @@ import configparser
 import os
 
 CONFIG = '../cnn/static/model_download_link.cfg'
-output = '../cnn/static/cnn_model.h5'
-JSONFILE = '../../../dataset_build/Crawl_Data/summary.json'
-EMBEDDINGS = '../cnn/static/embeddings.json'
+# output = '../cnn/static/cnn_model.h5'
+output = '../cnn/static/BestModel777.h5'
+# JSONFILE = '../../../dataset_build/Crawl_Data/summary.json'
+JSONFILE = '../../../knnsummary.json'
+EMBEDDINGS = '../cnn/static/embeddings_11.json'
 lr = 0.001
 wd = lr * 1e-2
 IMAGE_WIDTH = 224
@@ -90,10 +92,10 @@ for i in range(len(clothes_categories)):
     print(map_embeddings)
     df_embs = map_embeddings.apply(pd.Series)
     print(df_embs.shape)
-    neighbors = NearestNeighbors(n_neighbors = 4, algorithm='brute', metric='cosine')
+    neighbors = NearestNeighbors(n_neighbors = 10, algorithm='brute', metric='cosine')
     neighbors.fit(df_embs)
     select = select.iloc[0:0]
     #print(select)
     sub_category = clothes_categories[i - 1]
-    knnPickle = open(f'data/{sub_category}_knn.pkl', 'wb')
+    knnPickle = open(f'data_11/{sub_category}_knn.pkl', 'wb')
     pickle.dump(neighbors, knnPickle)
