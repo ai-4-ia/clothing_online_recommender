@@ -41,15 +41,17 @@ Here is a scikit-learn library, k-nearest neighbors algorithm is a classifier im
 
 ![](https://miro.medium.com/max/591/0*rANGSUaZLeVKnHDk.png)
 
-## YOLOV5
+## YOLOV8
 
-YOLOV5 is the latest Object Detection model in the YOLO family of models with the same accuracy as YOLOV4 but faster prediction speed.
-YOLOV5 is trained on Pytorch instead of DarkNet like previous generations. This is a big plus for YOLOv5 because PyTorch is much more popular.
+YOLOV8 is the latest Object Detection model in the YOLO family.
 
 ## Results
 
-Proposed model after being trained on DeepLearning 2 dataset achieved an accuracy of 74.2%. For YOLOV5 model, the accuracy achieved 83.81%. However, the recognition rate of the "dress" category is still low. One possible cause is because the images in the dataset used for training are not good and a large number of images contain "dress" accompanying the wearer's legs. Thus, when identifying, the model often relies on this feature to identify dress. Below is the confusion matrix of the YOLOV5 model.
-
+Proposed model after being trained on DeepLearning2, Fashionpedia and crawl dataset achieved an accuracy of 83.1%. For YOLOV8 model, the accuracy achieved 87.26%. However, the recognition rate of the "dress" category is still low. One possible cause is because the images in the dataset used for training are not good and a large number of images contain "dress" accompanying the wearer's legs. Thus, when identifying, the model often relies on this feature to identify dress.
+[YOLOv5](https://drive.google.com/drive/folders/1ESQX4SpbuaSQ-MR5Uc3mc-j1GYsdKCc-?usp=sharing)
+[YOLOv8](https://drive.google.com/drive/folders/1-4H0706JXj90s8T6uYHqHh4v1d3IpfJK?usp=sharing)
+[CNN](https://drive.google.com/file/d/1E3yNUcM6gttAMrj4EwsJRG1_Xa4EDc-y/view?usp=sharing)
+[kNN](https://drive.google.com/drive/folders/1ESsVYJW16D7pahkwBW_BCWEhGzf_bYxM?usp=sharing)
 
 ## Screenshots
 
