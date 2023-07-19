@@ -1,5 +1,6 @@
 import{
     CART_ADD_ITEM,
+    CART_FINISH_ORDER,
     CART_REMOVE_ITEM,
     CART_SAVE_PAYMENT_METHOD,
     CART_SAVE_SHIPPING_ADDRESS
@@ -23,6 +24,14 @@ export const cartReducers = (
                     cartItems: [...state.cartItems, item]
                 }
             }
+        case CART_FINISH_ORDER:
+            state.cartItems.forEach((cartItem)=>{
+                cartItem.countInStock = cartItem.countInStock - cartItem.qty
+            })
+            return{
+                ...state
+            }
+
         case CART_REMOVE_ITEM:
             return {
                 ...state,

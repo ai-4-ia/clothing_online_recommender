@@ -8,9 +8,9 @@ const SearchBox = () => {
     const submitHandler = (e) =>{
         e.preventDefault()
         if(keyword.trim()){
-            history(`/search/${keyword}`)
+            history(`/shop/search/${keyword}`)
         }else{
-            history('/')
+            history('/shop')
         }
     }
     return (

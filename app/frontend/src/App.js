@@ -21,10 +21,12 @@ import AdminUserEditScreen from './screens/Admin/user/AdminUserEdit/AdminUserEdi
 import AdminProductListScreen from './screens/Admin/product/AdminProductList/AdminProductListScreen';
 import AdminProductEditScreen from './screens/Admin/product/AdminProductEdit/AdminProductEditScreen';
 import AdminOrderListScreen from './screens/Admin/order/AdminOrderList/AdminOrderListScreen';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 const App = () => {
     return (
         <Router>
+            <ScrollToTop />
             <Header />
             <main>
                 <Routes>
@@ -40,7 +42,19 @@ const App = () => {
                             element={<ShopScreen />}
                         ></Route>
                         <Route
+                            path="category/:category"
+                            element={<ShopScreen />}
+                        ></Route>
+                        <Route
                             path="search/:keyword/page/:pageNumber"
+                            element={<ShopScreen />}
+                        />
+                        <Route
+                            path="category/:category/page/:pageNumber"
+                            element={<ShopScreen />}
+                        />
+                        <Route
+                            path="search/:keyword/page/:pageNumber/category/:category"
                             element={<ShopScreen />}
                         />
                     </Route>

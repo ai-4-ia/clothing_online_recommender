@@ -12,15 +12,15 @@ import './ShopScreen.css';
 const ShopScreen = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const [category, setCategory] = useState('');
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
     const keyword = params.keyword;
     const pageNumber = params.pageNumber || 1;
+    const category = params.category;
     const limit = 16;
     useEffect(() => {
         dispatch(listProducts(keyword, pageNumber, category, limit));
-    }, [dispatch, keyword, pageNumber]);
+    }, [dispatch, keyword, pageNumber, category]);
     return (
         <div className="grid home_wrapper">
             <h1>Product List</h1>
@@ -43,6 +43,7 @@ const ShopScreen = () => {
                         pages={pages}
                         page={page}
                         keyword={keyword ? keyword : ''}
+                        category={category ? category : ''}
                     ></Paginate>
                 </>
             )}

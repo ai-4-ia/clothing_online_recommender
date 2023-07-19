@@ -42,8 +42,8 @@ const Header = () => {
                             <span>product</span>
                         </LinkContainer>
                         <a
-                            // href="https://localhost:8501/"
-                            href="/detect"
+                            href="http://localhost:8501/detect/"
+                            // href= {process.env.DETECT_LINK}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="header_search"

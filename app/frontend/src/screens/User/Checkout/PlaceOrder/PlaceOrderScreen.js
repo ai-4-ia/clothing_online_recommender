@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     Button,
-    Form,
     Col,
     ListGroup,
     Image,
@@ -13,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../../../pieces/Message/Message';
 import CheckoutStep from '../../../../components/CheckoutStep/CheckoutStep';
 import { createOrder } from '../../../../actions/orderActions';
+import { updateQtyProduct } from '../../../../actions/productActions';
+import { finishOrder } from '../../../../actions/cartActions';
 
 const PlaceOrderScreen = () => {
     const dispatch = useDispatch();
@@ -51,6 +52,13 @@ const PlaceOrderScreen = () => {
                 totalPrice: cart.totalPrice,
             }),
         );
+        cart.cartItems.forEach((cartItem)=>{
+            dispatch(updateQtyProduct({
+                id: cartItem.product,
+                qty: cartItem.qty,
+            }))
+        })
+        dispatch(finishOrder())
     };
     return (
         <>

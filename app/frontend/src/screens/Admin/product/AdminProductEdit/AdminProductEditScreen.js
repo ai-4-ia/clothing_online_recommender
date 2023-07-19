@@ -65,7 +65,6 @@ const AdminProductEditScreen = () => {
                 },
             };
             const { data } = await axios.post('/api/upload', formData, config);
-            console.log(data);
             setImage(data.substring(1));
             setUploading(false);
         } catch (e) {

@@ -7,7 +7,7 @@ import Scroll from '../Scroll/Scroll';
 const CategoryShop = (props) => {
     const { img, title, subtitle, category, products } = props;
     // props.category = 'shirt'
-    const productslide = products.map((product, i) => (
+const productslide = products.map((product, i) => (
         <ProductCard product={product} key={i}/>
     ));
     return (
@@ -17,7 +17,7 @@ const CategoryShop = (props) => {
                     <div className="framecont">
                         <h2>{title}</h2>
                         <h4>{subtitle}</h4>
-                        <Link to={`./category/${category}`}>
+                        <Link to={`./shop/category/${category}`}>
                             <Appbutton
                                 text={'View All'}
                                 icon="fas fa-chevron-right"

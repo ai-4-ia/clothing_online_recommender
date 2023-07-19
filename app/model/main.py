@@ -33,12 +33,13 @@ SAVEDPATH = './static/upload/'
 CUTPATH = './static/detect/'
 DATABASEPATH = './database/cropped_database/'
 DATABASEINFORMATIONPATH = './database/final_database.json/'
+WEBSITELINK = 'model/website.cfg'
 IMAGE_WIDTH = 224
 IMAGE_HEIGHT = 224
 IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS = 3
 
-def read_config(file, pack, name):
+def read_config(file, pack, name, ):
     config = configparser.ConfigParser()
     config.readfp(open(file ,'r'))
     model_path = config.get(pack, name)
@@ -64,6 +65,7 @@ def knn_download(KNN_CONFIG, knn_output, category):
     if (isExist == False):
         model_download(knn_link, path)
     return path
+
 def category_detach(num):
     category = ''
     match num:
@@ -192,8 +194,10 @@ def detect_process(yolomodel, cnnmodel):
                 print(indices)
                 print(distance)
                 thislist = sorted(filter(lambda x: os.path.isfile(os.path.join(f'{DATABASEPATH}{choose_category}/', x)), os.listdir(f'{DATABASEPATH}{choose_category}/')))
+                x = len('https://drive.google.com/uc?id=')
+                website_link = (read_config(WEBSITELINK, 'Website', 'LINK'))[x:]
                 # show_result_1(f'{DATABASEPATH}{choose_category}/', thislist, indices, distance)
-                show_result_2(f'{DATABASEPATH}{choose_category}/', thislist, indices, distance)
+                show_result_2(f'{DATABASEPATH}{choose_category}/', indices, website_link, choose_category)
                 
 def show_result_1(path, thislist, indices, distance):
     for j in range(4):
@@ -256,68 +260,70 @@ def show_result_1(path, thislist, indices, distance):
         link = '[Click here](http://localhost:3000/product/' + link +  ')'
         st.markdown(link, unsafe_allow_html=True)   
 
-def get_data_array(image_num_array, DATABASEINFORMATIONPATH):
+def get_category_data(category):
+    category_array = []
+    with open(DATABASEINFORMATIONPATH, 'r') as f:
+        temp = json.loads(f.read())
+    for item in temp:
+        if item['category'] == category:
+            category_array.append(item)
+    return category_array
+    
+def get_data_array(image_num_array, category):
+    category_array = get_category_data(category)
     data_array = []
     with open(DATABASEINFORMATIONPATH, 'r') as f:
         temp = json.loads(f.read())
     for data in image_num_array:
-        for item in temp:
-            if item['no'] == data:
-                data_array.append(item)
+        data_array.append(category_array[data])
     return data_array    
     
-def show_result_2(path, thislist, indices, distance):
+def show_result_2(path, indices, website_link, choose_category):
     image_num_array = []
     for j in range(4):
-        image_num = int((thislist[indices[0][j]*2])[:-6])
+        image_num = int(indices[0][j])
         image_num_array.append(image_num)
-        print(image_num)
-    data_array = get_data_array(image_num_array, DATABASEINFORMATIONPATH)
-    print(image_num_array)
+    data_array = get_data_array(image_num_array, choose_category)
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.image(data_array[0]['imageLink'])
-        print('1')
         st.write(data_array[0]['name'])
         st.write('Original Price')
         st.write(data_array[0]['price_org'])
         st.write('Sale Price')
         st.write(data_array[0]['price_sale'])
         link = data_array[0]['_id']['$oid']
-        link = '[Click here](http://localhost:3000/product/' + link +  ')'
+        link = '[Click here](' + website_link + link +  ')'
         st.markdown(link, unsafe_allow_html=True)
     with col2:
         st.image(data_array[1]['imageLink'])
-        print('2')
         st.write(data_array[1]['name'])
         st.write('Original Price')
         st.write(data_array[0]['price_org'])
         st.write('Sale Price')
         st.write(data_array[0]['price_sale'])
         link = data_array[1]['_id']['$oid']
-        link = '[Click here](http://localhost:3000/product/' + link +  ')'
+        link = '[Click here](' + website_link + link +  ')'
         st.markdown(link, unsafe_allow_html=True)
     with col3:
         st.image(data_array[2]['imageLink'])
-        print('3')
         st.write(data_array[2]['name'])
         st.write('Original Price')
         st.write(data_array[0]['price_org'])
         st.write('Sale Price')
         st.write(data_array[0]['price_sale'])
         link = data_array[2]['_id']['$oid']
-        link = '[Click here](http://localhost:3000/product/' + link +  ')'
+        link = '[Click here](' + website_link + link +  ')'
         st.markdown(link, unsafe_allow_html=True)
     with col4:
         st.image(data_array[3]['imageLink'])
-        print('4')
         st.write(data_array[3]['name'])
         st.write('Original Price')
         st.write(data_array[0]['price_org'])
         st.write('Sale Price')
         st.write(data_array[0]['price_sale'])
         link = data_array[3]['_id']['$oid']
-        link = '[Click here](http://localhost:3000/product/' + link +  ')'
+        link = '[Click here](' + website_link + link +  ')'
         st.markdown(link, unsafe_allow_html=True)   
                 
 def main():

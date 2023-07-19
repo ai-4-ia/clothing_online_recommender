@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import { ObjectId } from "mongodb";
 
 const getProducts = async (req, res) => {
   const page = Number(req.query.pageNumber) || 1;
@@ -32,6 +33,8 @@ const getProductById = async (req, res) => {
     throw new Error("Product not found");
   }
 };
+
+const getCartItem = async (req, res) => {};
 
 const deleteProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -81,6 +84,26 @@ const updateProduct = async (req, res) => {
     product.numReviews = numReviews;
     product.image = image;
     product.brand = brand;
+    const updatedProduct = await product.save();
+    res.json(updatedProduct);
+    console.log(`Product: ${product}`);
+    console.log(`product.countInStock : ${product.countInStock}`);
+    console.log(`countInStock: ${countInStock}`);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+};
+
+const updateqty = async (req, res) => {
+  const { qty } = req.body;
+  console.log(qty);
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    const id = req.params.id;
+    // console.log(new ObjectId(id));
+    const countInStock = product.countInStock - qty;
+    product.countInStock = countInStock;
     const updatedProduct = await product.save();
     res.json(updatedProduct);
   } else {
@@ -238,7 +261,7 @@ const getTopCategoryProduct = async (req, res) => {
             rating: "$all.rating",
             numReviews: "$all.numReviews",
             price_org: "$all.price_org",
-            price_sale: "$all.price_sale"
+            price_sale: "$all.price_sale",
           },
         },
       },
@@ -256,4 +279,5 @@ export {
   reviewProduct,
   getTopProduct,
   getTopCategoryProduct,
+  updateqty,
 };

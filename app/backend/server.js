@@ -35,10 +35,11 @@ app.use((e, req, res, next) => {
   });
 });
 
+const hostname = "localhost";
 const server = express();
-server.use("/coudo", app);
+server.use("/clothing-online-recommender-backend", app);
 const PORT = process.env.PORT || 4000;
 
-server.listen(PORT, function () {
-  console.log(`Server runs on port ${PORT}`);
+server.listen(PORT, hostname, function () {
+  console.log(`Server runs on ${hostname}:${PORT}/clothing-online-recommender-backend/api/users`);
 });

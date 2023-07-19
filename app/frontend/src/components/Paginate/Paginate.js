@@ -2,7 +2,13 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './Paginate.css';
-const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
+const Paginate = ({
+    pages,
+    page,
+    isAdmin = false,
+    keyword = '',
+    category = '',
+}) => {
     const totalPages = pages;
     const activePages = page;
     const createPaginationItem = (x) => {
@@ -12,8 +18,12 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
                 to={
                     !isAdmin
                         ? keyword
-                            ? `/shop/search/${keyword}/page/${x}`
-                            : `/shop/page/${x}`
+                            ? category
+                                ? `/shop/search/${keyword}/page/${x}/category/${category}`
+                                : `/shop/search/${keyword}/page/${x}`
+                            : category 
+                            ? `/shop/category/${category}/page/${x}`
+                            :`/shop/page/${x}`
                         : `/admin/productlist/page/${x}`
                 }
             >
@@ -24,10 +34,10 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
     const paginationItems = [];
     const midpoint = Math.round(totalPages / 2);
     if (
-        activePages == 1 ||
-        activePages == totalPages ||
-        activePages == 2 ||
-        activePages == totalPages - 1
+        activePages === 1 ||
+        activePages === totalPages ||
+        activePages === 2 ||
+        activePages === totalPages - 1
     ) {
         paginationItems.push(createPaginationItem(1));
         paginationItems.push(createPaginationItem(2));
