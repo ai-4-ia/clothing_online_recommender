@@ -77,18 +77,15 @@ const updateProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     product.name = name;
-    product.price = price;
+    product.price_org = price;
     product.description = description;
     product.category = category;
     product.countInStock = countInStock;
     product.numReviews = numReviews;
-    product.image = image;
+    product.imageLink = image;
     product.brand = brand;
     const updatedProduct = await product.save();
     res.json(updatedProduct);
-    console.log(`Product: ${product}`);
-    console.log(`product.countInStock : ${product.countInStock}`);
-    console.log(`countInStock: ${countInStock}`);
   } else {
     res.status(404);
     throw new Error("Product not found");
@@ -101,7 +98,6 @@ const updateqty = async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     const id = req.params.id;
-    // console.log(new ObjectId(id));
     const countInStock = product.countInStock - qty;
     product.countInStock = countInStock;
     const updatedProduct = await product.save();
