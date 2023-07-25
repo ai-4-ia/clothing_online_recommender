@@ -64,7 +64,8 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   const {
     name,
-    price,
+    priceOrg,
+    priceSale,
     description,
     image,
     brand,
@@ -75,7 +76,8 @@ const updateProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     product.name = name;
-    product.price_org = price;
+    product.price_org = priceOrg;
+    product.price_sale = priceSale;
     product.description = description;
     product.category = category;
     product.countInStock = countInStock;

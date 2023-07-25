@@ -37,18 +37,15 @@ const AdminProductListScreen = () => {
     const { userInfo } = userLogin;
 
     useEffect(() => {
-        dispatch({ type: PRODUCT_CREATE_RESET });
-        if (!userInfo.isAdmin) {
-            history('/');
-        }
-        if (successCreate) {
-            history(`/admin/product/${createdProduct._id}/edit`);
-        }
         if (userInfo && userInfo.isAdmin) {
             dispatch(listProducts('', pageNumber));
         } else {
             history('/');
         }
+        // dispatch({ type: PRODUCT_CREATE_RESET });
+        // if (successCreate) {
+        //     history(`/admin/product/${createdProduct._id}/edit`);
+        // }
     }, [dispatch, userInfo, history, successDelete, successCreate, pageNumber]);
 
     const deleteHandler = (id) => {

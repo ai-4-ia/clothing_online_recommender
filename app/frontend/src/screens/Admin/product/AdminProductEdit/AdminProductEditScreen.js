@@ -47,7 +47,7 @@ const AdminProductEditScreen = () => {
                 setName(product.name);
                 setPriceOrg(product.price_org);
                 setPriceSale(product.price_sale);
-                setImage(product.image);
+                setImage(product.imageLink);
                 setBrand(product.brand);
                 setCategory(product.category);
                 setCountInStock(product.countInStock);
@@ -152,14 +152,14 @@ const AdminProductEditScreen = () => {
                                     setImage(e.target.value);
                                 }}
                             ></Form.Control>
-                            <Form.Group controlId="formFile" className="mb-3">
+                            {/* <Form.Group controlId="formFile" className="mb-3">
                                 <Form.Label>Or Upload Product Image</Form.Label>
                                 <Form.Control
                                     type="file"
                                     onChange={uploadFileHandler}
                                 />
                             </Form.Group>
-                            {uploading && <Loader />}
+                            {uploading && <Loader />} */}
                         </Form.Group>
                         <Form.Group controlId="brand">
                             <Form.Label>Brand</Form.Label>
