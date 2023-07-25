@@ -14,7 +14,7 @@ const getProducts = async (req, res) => {
         name: new RegExp(req.query.keyword, "i"),
       }
     : {};
-  const count = await Product.countDocuments({ ...keyword });
+  const count = await Product.countDocuments({ ...keyword, ...category });
   const products = await Product.find({
     ...keyword,
     ...category,
@@ -33,8 +33,6 @@ const getProductById = async (req, res) => {
     throw new Error("Product not found");
   }
 };
-
-const getCartItem = async (req, res) => {};
 
 const deleteProduct = async (req, res) => {
   const product = await Product.findById(req.params.id);

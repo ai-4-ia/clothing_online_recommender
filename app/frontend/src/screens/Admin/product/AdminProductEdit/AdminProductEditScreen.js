@@ -13,7 +13,8 @@ import { PRODUCT_UPDATE_RESET } from '../../../../constants/productConstants';
 import axios from 'axios';
 
 const AdminProductEditScreen = () => {
-    const [price, setPrice] = useState(0);
+    const [priceOrg, setPriceOrg] = useState(0);
+    const [priceSale, setPriceSale] = useState(0);
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
     const [brand, setBrand] = useState('');
@@ -44,7 +45,8 @@ const AdminProductEditScreen = () => {
                 dispatch(listProductDetail(productId));
             } else {
                 setName(product.name);
-                setPrice(product.price);
+                setPriceOrg(product.price_org);
+                setPriceSale(product.price_sale);
                 setImage(product.image);
                 setBrand(product.brand);
                 setCategory(product.category);
@@ -77,7 +79,8 @@ const AdminProductEditScreen = () => {
             updateProduct({
                 _id: productId,
                 name,
-                price,
+                priceOrg,
+                priceSale,
                 image,
                 brand,
                 category,
@@ -117,14 +120,25 @@ const AdminProductEditScreen = () => {
                                 }}
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId="price">
-                            <Form.Label>Price</Form.Label>
+                        <Form.Group controlId="price_org">
+                            <Form.Label>Price Original</Form.Label>
                             <Form.Control
                                 type="number"
-                                placeholder="Enter Price"
-                                value={price}
+                                placeholder="Enter Original Price"
+                                value={priceOrg}
                                 onChange={(e) => {
-                                    setPrice(e.target.value);
+                                    setPriceOrg(e.target.value);
+                                }}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId="price_sale">
+                            <Form.Label>Price Sale</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Enter Sale Price"
+                                value={priceSale}
+                                onChange={(e) => {
+                                    setPriceSale(e.target.value);
                                 }}
                             ></Form.Control>
                         </Form.Group>

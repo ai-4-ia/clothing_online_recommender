@@ -6,13 +6,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    font-size: 12px;
+    outline: none;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
-    font-size: 12px;
-    outline: none;
-    border: none;
 }
 .appbutton i {
     color: var(--white-color-1st);

@@ -172,6 +172,7 @@
 .producttitle h3 {
   font-size: 1.6rem;
   color: var(--black-color-1st);
+  text-decoration: line-through;
 }
 
 .productrating {
@@ -206,15 +207,6 @@
 .product_quantity select {
   border: 0.2rem solid var(--black-color-1st);
   font-size: 1.6rem;
-}
-
-.productbox .appbutton {
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  /* width: 100%; */
 }
 
 .productbox .card {

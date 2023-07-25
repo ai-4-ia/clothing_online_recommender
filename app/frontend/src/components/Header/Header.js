@@ -42,7 +42,7 @@ const Header = () => {
                             <span>product</span>
                         </LinkContainer>
                         <a
-                            href="http://localhost:8501/detect/"
+                            href="http://product.ai4ia.cc/clothing-recommender/"
                             // href= {process.env.DETECT_LINK}
                             target="_blank"
                             rel="noopener noreferrer"

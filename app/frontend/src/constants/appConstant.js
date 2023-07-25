@@ -96,27 +96,27 @@ export const footercontent = [
         links: [
             {
                 text: 'Shirt',
-                link: './shirt',
+                link: '/shop/category/shirt',
             },
             {
                 text: 'Outwear',
-                link: './outwear',
+                link: '/shop/category/outwear',
             },
             {
                 text: 'Dress',
-                link: './dress',
+                link: '/shop/category/dress',
             },
             {
                 text: 'Shorts',
-                link: './shorts',
+                link: '/shop/category/short',
             },
             {
                 text: 'Trousers',
-                link: './trouser',
+                link: '/shop/category/trouser',
             },
             {
                 text: 'Skirt',
-                link: './skirt',
+                link: '/shop/category/skirt',
             },
         ],
     },
@@ -125,7 +125,7 @@ export const footercontent = [
         links: [
             {
                 text: 'My Account',
-                link: '/account',
+                link: '/login?redirect=/profile',
             },
             {
                 text: 'Purchases',
@@ -142,7 +142,7 @@ export const footercontent = [
         links: [
             {
                 text: 'Track Order',
-                link: '/track',
+                link: '/login?redirect=/profile',
             },
             {
                 text: 'Shipping and Returns',

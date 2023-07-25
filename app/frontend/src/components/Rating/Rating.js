@@ -7,7 +7,6 @@ const Rating = ({
     color = 'var(--black-color-1st)',
     textShow = 'show',
 }) => {
-    console.log(textShow === 'show')
     return (
         <div className="rating">
         <span>

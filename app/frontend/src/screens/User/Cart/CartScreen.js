@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import Message from '../../../pieces/Message/Message';
-import { addToCart, removeFromCart } from '../../../actions/cartActions'
+import { addToCart, removeFromCart } from '../../../actions/cartActions';
 import {
     Row,
     Col,
@@ -19,21 +19,14 @@ const CartScreen = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const history = useNavigate();
-    const [disabled, setDisabled] = useState(false)
+    const [disabled, setDisabled] = useState(false);
     const productId = params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1;
     const cart = useSelector((state) => state.cart);
-    const { cartItems } = cart;
-    // console.log(cartItems)
-    // for (const cartItem in cartItems){
-    //     console.log(cartItem)
-    //     if (cartItem.qty > cartItem.countInStock){
-    //         console.log(cartItem)
-    //         setDisabled(true)
-    //         break
-    //     }
-    // }
-    // console.log(`disabled ${disabled}`)
+    // const { cartItems } = cart;
+    const cartItems = localStorage.getItem('cartItems')
+        ? JSON.parse(localStorage.getItem('cartItems'))
+        : [];
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty));
@@ -154,7 +147,9 @@ const CartScreen = () => {
                                 <Button
                                     type="button"
                                     className="btn-block"
-                                    disabled={cartItems.length === 0 && disabled}
+                                    disabled={
+                                        cartItems.length === 0 && disabled
+                                    }
                                     onClick={checkoutHandler}
                                 >
                                     Check Out

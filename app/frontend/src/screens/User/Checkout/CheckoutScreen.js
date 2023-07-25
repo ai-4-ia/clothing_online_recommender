@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 const CheckoutScreen = () => {
     return (
         <>
-            <div>CheckoutScreen</div>
+            <div></div>
             <Outlet />
         </>
     );

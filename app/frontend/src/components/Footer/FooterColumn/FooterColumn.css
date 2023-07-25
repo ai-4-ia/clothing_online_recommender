@@ -51,7 +51,6 @@
 }
 
 .column .col {
-  overflow: hidden;
   max-height: 500px;
   transition: all 0.3s;
 }
